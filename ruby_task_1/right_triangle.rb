@@ -1,12 +1,33 @@
-puts "Hello **0/** let's do the math (right triangle)"
-print "Enter side A -> "
+puts "\nHello **0/** let's do the math (right triangle)"
+print "\nEnter side A -> "
 side_a = gets.to_i
 print "Enter side B -> "
 side_b = gets.to_i
 print "Enter side C -> "
 side_c = gets.to_i
-puts "It's equilateral triangle" if  side_a == side_b && side_b == side_c
-#puts "It's isosceles triangle" if  side_a == side_b || side_b == side_c || side_a == side_c
+#Searching equilateral or isosceles triangle
+if  side_a == side_b && side_b == side_c
+    puts "\n ~~> It's equilateral triangle"
+elsif side_a == side_b || side_b == side_c || side_a == side_c
+    puts "\n It's isosceles triangle"
+end
+#If triangle is not a equilateral or isosceles we search gipo
+if side_a>side_b && side_a>side_c
+    if side_b**2+side_c**2 == side_a**2
+        puts "\n ~~> it's right triangle, A - gipo"
+    else bool_1=(side_b**2+side_c**2 == side_a**2)       
+    end
+elsif side_b>side_a && side_b>side_c
+    if side_a**2+side_c**2 == side_b**2
+        puts "\n ~~> it's right triangle, B - gipo"
+    else bool_2=(side_a**2+side_c**2 == side_b**2) 
+    end
+elsif side_c>side_a && side_c>side_b 
+    if side_a**2+side_b**2 == side_c**2
+        puts "\n ~~> it's right triangle, C - gipo"
+    else bool_3=(side_c>side_a && side_c>side_b) 
+    end
+end
 
 
 
