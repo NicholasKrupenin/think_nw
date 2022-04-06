@@ -1,6 +1,6 @@
 puts "Hi man - pls write your name and height"
 print "Name -> " 
-name = gets.chomp.capitalize
+name = gets.chomp.capitalize!
 print "Height -> " 
 height = gets.to_i
 if (height-110)*1.15 <= 0
