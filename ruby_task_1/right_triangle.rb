@@ -6,14 +6,14 @@ side_b = gets.to_i
 print "Enter side C -> "
 side_c = gets.to_i
 #
-#Searching equilateral or isosceles triangle
+#Searching equilateral or isosceles triangle.
 #
 if  side_a == side_b && side_b == side_c
     puts "\n ~~> It's equilateral triangle"
 elsif side_a == side_b || side_b == side_c || side_a == side_c
     puts "\n It's isosceles triangle"
 #
-#If triangle is not a equilateral or isosceles we search hypotenuse
+#If triangle is not a equilateral or isosceles we search hypotenuse.
 #
 elsif side_a>side_b && side_a>side_c
         if side_b**2+side_c**2 == side_a**2
