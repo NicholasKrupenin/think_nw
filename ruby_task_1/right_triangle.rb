@@ -8,15 +8,14 @@ side_c = gets.to_i
 #
 #Searching equilateral or isosceles triangle
 #
-if  side_a == side_b && side_b == side_c
+if  side_a == side_b && side_b == side_c 
     puts "\n ~~> It's equilateral triangle"
 elsif side_a == side_b || side_b == side_c || side_a == side_c
     puts "\n It's isosceles triangle"
-end
 #
 #If triangle is not a equilateral or isosceles we search hypotenuse
 #
-if side_a>side_b && side_a>side_c
+elsif side_a>side_b && side_a>side_c
         if side_b**2+side_c**2 == side_a**2
         puts "\n ~~> it's right triangle, A - hypotenuse"      
         end
