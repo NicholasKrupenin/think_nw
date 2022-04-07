@@ -27,6 +27,9 @@ elsif side_c>side_a && side_c>side_b
         if side_a**2+side_b**2 == side_c**2
         puts "\n ~~> it's right triangle, C - hypotenuse"
         end
+
+elsif side_a != side_b && side_b != side_c && side_a != side_c
+        puts "\n ~~> it's " 
 end
 
 
