@@ -17,16 +17,18 @@ elsif side_a == side_b || side_b == side_c || side_a == side_c
 #
 elsif side_a>side_b && side_a>side_c
         if side_b**2+side_c**2 == side_a**2
-        puts "\n ~~> it's right triangle, A - hypotenuse"      
+        puts "\n ~~> it's right triangle, A - hypotenuse"    
         end
 elsif side_b>side_a && side_b>side_c
         if side_a**2+side_c**2 == side_b**2
-        puts "\n ~~> it's right triangle, B - hypotenuse"    
+        puts "\n ~~> it's right triangle, B - hypotenuse" 
         end
 elsif side_c>side_a && side_c>side_b 
         if side_a**2+side_b**2 == side_c**2
         puts "\n ~~> it's right triangle, C - hypotenuse"
-        end     
+        end
+elsif side_a != side_b && side_b != side_c
+        puts "\n ~~> it's " 
 end
 
 
