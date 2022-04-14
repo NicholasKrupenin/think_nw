@@ -3,7 +3,9 @@ Array=[]
 i = 5
 p = i
 
+#
 # !!while loop!!
+#
 
 =begin
 
@@ -16,7 +18,9 @@ end
 puts "Array = #{Array}"
 =end 
 
+#
 # !!untile loop!!
+#
 
 =begin
 until i == 100
@@ -28,7 +32,9 @@ puts "Array = #{Array}"
 
 =end 
 
+#
 # !!loop do!!
+#
 
 =begin
 
@@ -40,9 +46,11 @@ end
 
 puts "Array = #{Array}"
 
-=end 
+=end
 
+#
 # !!for loop!!
+#
 
 =begin
 
