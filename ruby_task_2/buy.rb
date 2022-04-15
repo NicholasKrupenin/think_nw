@@ -13,13 +13,12 @@ loop do
     print "Enter quantity product ~~> "
     quantity = gets.to_f
 
-        arr[name] = {price => quantity}
+    arr[name] = {price => quantity}
 
 price_total += price*quantity 
 
   
 puts "\nTotal price #{name} = #{price*quantity}"      
-
 
 end
 

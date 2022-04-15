@@ -10,8 +10,8 @@ p = i
 =begin
 
 while i <= 99
-        i +=5 
-        Array << i
+    i +=5 
+    Array << i
          
 end
 
@@ -41,7 +41,7 @@ puts "Array = #{Array}"
 loop do
     i += 5
     Array << i 
-break if i >= 100
+    break if i >= 100
 end   
 
 puts "Array = #{Array}"
@@ -55,8 +55,8 @@ puts "Array = #{Array}"
 =begin
 
 for i in 1..19
-p += 5
-Array << p
+    p += 5
+    Array << p
 end
 
 puts "Array = #{Array}"

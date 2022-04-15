@@ -5,9 +5,9 @@ fib = []
 a=0
 b=1
 for i in 1..n
-    fib.push(a)
-    a,b = b, a+b
-    break if a >= n
+  fib.push(a)
+  a,b = b, a+b
+  break if a >= n
 end
-print fib
 
+print fib
