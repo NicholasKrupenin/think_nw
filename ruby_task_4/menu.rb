@@ -43,9 +43,9 @@ class Menu
       case selection
       when 1 then send(:newstation)
       when 2 then send(:newtrain)
-      when 3 then puts "\n<<< Добавте еще одну станцию !!!" if @station.size <= 1 || send(:newroute)
-      when 4 then puts 'Назначьте начальную и конечную станцию' if @route == 0 || send(:add_station)
-      when 5 then puts "\nНечего удалять" if @route.station_all.size <= 1 || send(:dell_station)
+      when 3 then send(:newroute)
+      when 4 then send(:add_station)
+      when 5 then send(:dell_station)
       when 6 then send(:assign_route)
       when 7 then send(:add_wagon)
       when 8 then send(:del_wagon)
@@ -89,53 +89,73 @@ class Menu
   def newroute
     puts "\n#{`whoami`.chomp} ты создал/а следующее станции:"
 
-    (0...@station.length).each do |i|
-      puts "\n#{i}) -- #{@station[i].name}\n"
+    if @station.size >= 1
+
+      (0...@station.length).each do |i|
+        puts "\n#{i}) -- #{@station[i].name}\n"
+      end
+
+      puts "\nВыберите начальную и конечную станцию"
+
+      print 'Начальная станция ~> '
+      first = gets.to_i
+
+      print 'Конечная станция ~> '
+      last = gets.to_i
+
+      @route = Route.new(@station[first], @station[last])
+
+      p @route
+    else
+
+      puts "\n<<< Добавте еще одну станцию !!!"
     end
-
-    puts "\nВыберите начальную и конечную станцию"
-
-    print 'Начальная станция ~> '
-    first = gets.to_i
-
-    print 'Конечная станция ~> '
-    last = gets.to_i
-
-    @route = Route.new(@station[first], @station[last])
-
-    p @route
   end
 
   # 4
 
   def add_station
-    intermediate = @station - @route.station_all
+    if @route != 0
 
-    (0...intermediate.size).each do |i|
-      puts "\n#{i}) -- #{intermediate[i].name}\n"
+      intermediate = @station - @route.station_all
+
+      (0...intermediate.size).each do |i|
+        puts "\n#{i}) -- #{intermediate[i].name}\n"
+      end
+
+      print "\nВыберите станцию ~>"
+      add = gets.to_i
+
+      @route.add_station(intermediate[add])
+
+      p @route
+
+    else
+
+      puts 'Назначьте начальную и конечную станцию'
     end
-
-    print "\nВыберите станцию ~>"
-    add = gets.to_i
-
-    @route.add_station(intermediate[add])
-
-    p @route
   end
 
   # 5
 
   def dell_station
-    (0...@route.station_all.size).each do |i|
-      puts "\n#{i}) -- #{@route.station_all[i].name}\n"
+    if @route.station_all.size <= 1
+
+      puts "\nНечего удалять"
+
+    else
+
+      (0...@route.station_all.size).each do |i|
+        puts "\n#{i}) -- #{@route.station_all[i].name}\n"
+      end
+
+      print "\nВыберите станцию ~>"
+      dell = gets.to_i
+
+      @route.del_station(@station[dell])
+
+      p @route
     end
-
-    print "\nВыберите станцию ~>"
-    dell = gets.to_i
-
-    @route.del_station(@station[dell])
-
-    p @route
   end
 
   # 6
