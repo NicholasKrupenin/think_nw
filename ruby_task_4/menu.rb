@@ -89,7 +89,7 @@ class Menu
   def newroute
     puts "\n#{`whoami`.chomp} ты создал/а следующее станции:"
 
-    if @station.size >= 1
+    if @station.size >= 2
 
       (0...@station.length).each do |i|
         puts "\n#{i}) -- #{@station[i].name}\n"
