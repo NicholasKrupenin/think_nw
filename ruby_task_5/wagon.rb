@@ -9,6 +9,7 @@ class WagonPassenger
   end
 end
 
+
 class WagonCargo
   include Manufacturer
   attr_reader :type

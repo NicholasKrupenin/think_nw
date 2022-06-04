@@ -4,6 +4,7 @@ require_relative 'manufacturer_name'
 require_relative 'instance_counter'
 
 class Train
+
   include Manufacturer
   include InstanceCounter
   attr_accessor :route

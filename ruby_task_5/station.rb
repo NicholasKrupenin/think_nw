@@ -10,7 +10,6 @@ class Station
 
    @@all = []
 
-
    def self.all
     @@all
   end

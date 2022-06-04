@@ -8,6 +8,7 @@ class Menu
     @route = 0
   end
 
+
   def start
     puts " \n\t Привет #{`whoami`.chomp}!"
 

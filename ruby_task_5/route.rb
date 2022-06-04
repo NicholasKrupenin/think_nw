@@ -30,6 +30,4 @@ class Route
     @station_all[1..-2]
   end
 
-
-
 end
