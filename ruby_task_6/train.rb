@@ -32,19 +32,11 @@ class Train
   end
 
   def add_wagon(wagon)
-    if @speed.zero? && wagon.type == type
-      @quantity.push(wagon)
-    else
-      raise "См. #{@speed} или #{type}"
-    end
+    @quantity.push(wagon)
   end
 
   def del_wagon(wagon)
-    if @speed.zero? && wagon.type == type
-      @quantity.delete(wagon)
-    else
-      raise "См. #{@speed} или #{type}"
-    end
+    @quantity.delete(wagon)
   end
 
   def assign_a_route(route)
@@ -59,30 +51,20 @@ class Train
   end
 
   def next_station
-    if route.station_all[@index_station + 1] != nil
-      route.station_all[@index_station + 1]
-    else
-      raise 'Следующая станция не существует'
-    end
+    route.station_all[@index_station + 1]
   end
 
   def previous_station
-    if @index_station.positive?
-      route.station_all[@index_station - 1]
-    else
-      raise 'Предыдущей станции не существует'
-    end
+    route.station_all[@index_station - 1]
   end
 
   def move
-    print "Station: #{route.station_all[@index_station + 1].name}"
     next_station.plus_train(self)
     current_station.del_train(self)
     @index_station += 1
   end
 
   def back
-    print "Station: #{route.station_all[@index_station - 1].name}"
     previous_station.plus_train(self)
     current_station.del_train(self)
     @index_station -= 1
@@ -92,7 +74,7 @@ class Train
 
 
   def validate!
-    raise print "\n !!! Номер поезда введен не корректно !!! \n" if @number !~ VALIDATE[:number_train]
+    raise puts "\n !!! Номер поезда введен не корректно !!! " if @number !~ VALIDATE[:number_train]
     true
   end
 

@@ -65,7 +65,7 @@ class Menu
           end
 
         rescue StandardError
-          print "\n>>>> Попробуйте снова\n"
+          puts "\n>>>> Попробуйте снова"
           retry
       end
     end
@@ -182,7 +182,11 @@ class Menu
   # 6
 
   def assign_route
-    @train.assign_a_route(@route)
+    unless @train.nil? || @route.nil?
+      @train.assign_a_route(@route)
+    else
+      puts "\n>>> Поезд не создан или не назначен маршрут <<<"
+    end
   end
 
   # 7
@@ -198,7 +202,6 @@ class Menu
 
     if @train.type == @wagon.type
       @train.add_wagon(@wagon)
-      p @train
     else
       puts 'Вагон/ы и поезд разных типов'
     end
@@ -207,7 +210,11 @@ class Menu
   # 8
 
   def del_wagon
-    @train.del_wagon(@wagon)
+    unless @train.quantity.empty?
+      @train.del_wagon(@wagon)
+    else
+      print "\nНечего удалять"
+    end
   end
 
   # 9
@@ -217,9 +224,18 @@ class Menu
     selection = gets.to_i
 
     case selection
-    when 1 then  @train.move
-    when 2 then  @train.back
-
+    when 1
+      if @train.next_station
+        @train.move
+      else
+        puts "\nСледующая станция не существует"
+      end
+    when 2
+      unless @train.previous_station
+        @train.back
+      else
+        puts "\nСледующая станция не существует"
+      end
     end
   end
 

@@ -34,7 +34,7 @@ class Station
   private # в интерфейсе не задан
 
   def validate!
-    raise print "\n !!! Название не корректно !!! \n" if @name !~ VALIDATE[:name]
+    raise puts "\n !!! Название не корректно !!! " if @name !~ VALIDATE[:name]
     true
   end
 
