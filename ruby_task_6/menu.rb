@@ -74,7 +74,7 @@ class Menu
   # 1
 
   def newstation
-    print "\nВведите название станции (от 1 до 8 любых символов) - KimKiDuk  ~> "
+    print "\nВведите название станции (от 1 до 8 любых символов) - "KimKiDuk"  ~> "
     station_name = gets.chomp
 
     @station.push(Station.new(station_name))
@@ -231,7 +231,7 @@ class Menu
         puts "\nСледующая станция не существует"
       end
     when 2
-      unless @train.previous_station
+      if @train.previous_station
         @train.back
       else
         puts "\nСледующая станция не существует"
