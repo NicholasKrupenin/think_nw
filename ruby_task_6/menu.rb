@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Menu
-  attr_reader :station, :train, :route, :wagon
+  attr_reader :station, :train, :route, :wagon, :attempt
 
 
   def initialize
@@ -41,7 +41,7 @@ class Menu
       print "\n\nВведите номер операции: ~> "
 
       selection = gets.to_i
-      attempt = 0
+      @attempt = 0
 
       begin
         selection
@@ -65,9 +65,9 @@ class Menu
           end
 
         rescue StandardError
-          puts "\n>>>> Попробуйте снова"
-          attempt += 1
-          retry if attempt < 3
+          puts "\n>>> Попробуйте снова"
+          @attempt += 1
+          retry if @attempt < 2
       end
     end
   end
@@ -187,7 +187,7 @@ class Menu
     unless @train.nil? || @route.nil?
       @train.assign_a_route(@route)
     else
-      puts "\n>>> Поезд не создан или не назначен маршрут <<<"
+      puts "\n>>> Поезд не создан или не назначен маршрут"
     end
   end
 
@@ -244,6 +244,8 @@ class Menu
   # 10
 
   def curret
+    @attempt = 1
+    raise unless assign_route
     p @train.current_station
   end
 
