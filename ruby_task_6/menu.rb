@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Menu
-  attr_reader :station, :train, :route, :wagon, :attempt
+  attr_reader :station, :train, :route, :wagon
 
-  include InstanceCounter
 
   def initialize
     @station = []
@@ -42,7 +41,7 @@ class Menu
       print "\n\nВведите номер операции: ~> "
 
       selection = gets.to_i
-
+      attempt = 0
 
       begin
         selection
@@ -59,6 +58,7 @@ class Menu
             when 9 then send(:next_back)
             when 10 then send(:curret)
             when 11 then send(:start)
+            when 15 then send(:test) #hidden
             when 12
               puts "\nЗавершение программы"
               state = false
@@ -66,7 +66,8 @@ class Menu
 
         rescue StandardError
           puts "\n>>>> Попробуйте снова"
-          retry
+          attempt += 1
+          retry if attempt < 3
       end
     end
   end
@@ -74,7 +75,7 @@ class Menu
   # 1
 
   def newstation
-    print "\nВведите название станции (от 1 до 8 любых символов) - "KimKiDuk"  ~> "
+    print "\nВведите название станции (от 1 до 8 любых символов) - 'KimKiDuk'  ~> "
     station_name = gets.chomp
 
     @station.push(Station.new(station_name))
@@ -127,9 +128,10 @@ class Menu
       @route = Route.new(@station[first], @station[last])
 
       p @route
-    else
 
+    else
       puts "\n<<< Добавте еще одну станцию !!!"
+
     end
   end
 
@@ -244,4 +246,11 @@ class Menu
   def curret
     p @train.current_station
   end
+
+  #15
+
+  def test
+    # .....
+  end
+
 end

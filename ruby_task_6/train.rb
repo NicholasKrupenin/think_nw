@@ -17,9 +17,9 @@ class Train
     @speed = speed
     @quantity = []
     @type = type
+    validate!
     @@all_trains.push(self)
     register_instance
-    validate!
   end
 
   def self.find(number)

@@ -12,6 +12,7 @@ module InstanceCounter
     def instances
       @instances || 0
     end
+
   end
 
   module InstanceMethods
@@ -19,9 +20,7 @@ module InstanceCounter
     VALIDATE = {name: /^\w{1,8}$/,number_train: /^\w{3}-?\w{2}$/,number: /^\d{1,3}$/,type: /^(cargo)|(passenger)$/}
 
     def valid?
-
-    validate! ? true : false
-
+      validate! == true ? true : false
     end
 
     protected

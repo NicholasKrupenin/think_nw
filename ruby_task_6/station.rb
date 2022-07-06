@@ -18,10 +18,10 @@ class Station
   def initialize(name)
     @name = name
     @train = []
+    validate!
     @@all.push(self)
     register_instance
-    validate!
-  end
+    end
 
   def plus_train(train)
     @train.push(train)
