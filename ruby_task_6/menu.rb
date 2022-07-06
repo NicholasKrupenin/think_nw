@@ -245,7 +245,7 @@ class Menu
 
   def curret
     @attempt = 1
-    raise unless assign_route
+    raise puts "\nПроверьте все ли создано: Станции > Поезд > Маршрут"
     p @train.current_station
   end
 
