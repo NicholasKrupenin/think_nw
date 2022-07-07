@@ -36,7 +36,6 @@ class Station
   def validate!
     raise puts "\n>>> Название не корректно !!! " if @name !~ VALIDATE[:name]
     raise puts "\n>>> Название станции не указано!" if @name.empty?
-    true
   end
 
   def type_train(type)
