@@ -101,10 +101,10 @@ class Menu
     case selection
       when 1
         @train = PassengerTrain.new(number)
-        puts "Created new train: #{@train}" if train.valid?
+        puts "Поезд создан: #{@train}" if train.valid?
       when 2
         @train = CargoTrain.new(number)
-        puts "Created new train: #{@train}" if train.valid?
+        puts "Поезд создан: #{@train}" if train.valid?
       else
         raise puts "\n>>> Вы не выбрали тип поезда"
     end
