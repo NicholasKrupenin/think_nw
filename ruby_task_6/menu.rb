@@ -64,10 +64,9 @@ class Menu
               state = false
           end
 
-        rescue StandardError
+        rescue
           puts "\n>>> Попробуйте снова"
-          @attempt += 1
-          retry if @attempt < 2
+          retry if (@attempt += 1) < 2
       end
     end
   end
@@ -100,18 +99,25 @@ class Menu
 
 
     case selection
-      when 1 then @train = PassengerTrain.new(number)
-      when 2 then @train = CargoTrain.new(number)
+      when 1
+        @train = PassengerTrain.new(number)
+        puts "Created new train: #{@train}" if train.valid?
+      when 2
+        @train = CargoTrain.new(number)
+        puts "Created new train: #{@train}" if train.valid?
+      else
+        raise puts "\n>>> Вы не выбрали тип поезда"
     end
-
   end
 
   # 3
 
   def newroute
-    puts "\n#{`whoami`.chomp} ты создал/а следующее станции:"
+
 
     if @station.size >= 2
+
+      puts "\n#{`whoami`.chomp} ты создал/а следующее станции:"
 
       (0...@station.length).each do |i|
         puts "\n#{i}) -- #{@station[i].name}\n"
@@ -130,7 +136,7 @@ class Menu
       p @route
 
     else
-      puts "\n<<< Добавте еще одну станцию !!!"
+      puts "\nДобавте еще одну станцию !!!"
 
     end
   end
@@ -149,13 +155,14 @@ class Menu
       print "\nВыберите станцию ~>"
       add = gets.to_i
 
+
       @route.add_station(intermediate[add])
 
       p @route
 
     else
 
-      puts 'Назначьте начальную и конечную станцию'
+      puts "\nНазначьте начальную и конечную станцию"
     end
   end
 
@@ -175,9 +182,10 @@ class Menu
       print "\nВыберите станцию ~>"
       dell = gets.to_i
 
-      @route.station_all.delete_at(@station[dell])
+      raise puts "\n>>> На станции поезд " unless @station[dell].train.empty?
 
-      p @route
+      @route.del_station(@station[dell])
+
     end
   end
 
@@ -187,7 +195,7 @@ class Menu
     unless @train.nil? || @route.nil?
       @train.assign_a_route(@route)
     else
-      puts "\n>>> Поезд не создан или не назначен маршрут"
+      puts "\nПоезд не создан или не назначен маршрут"
     end
   end
 
@@ -244,15 +252,15 @@ class Menu
   # 10
 
   def curret
-    @attempt = 1
-    raise puts "\nПроверьте все ли создано: Станции > Поезд > Маршрут"
     p @train.current_station
   end
 
   #15
 
   def test
-    # .....
+    p @train
+    p @station
+    p @route
   end
 
 end

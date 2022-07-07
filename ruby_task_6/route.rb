@@ -10,6 +10,7 @@ class Route
   def initialize(primary, final)
     @primary = primary
     @final = final
+    validate!
     @station_all = [@primary, @final]
     register_instance
   end
@@ -25,6 +26,10 @@ class Route
   private # в интерфейсе не задан
 
   attr_accessor :primary, :final
+
+  def validate!
+    raise puts "\n>>> Начальная и конечная станция одинаковы" if @primary == @final
+  end
 
   def intermediate
     @station_all[1..-2]

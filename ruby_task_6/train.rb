@@ -12,7 +12,7 @@ class Train
 
   @@all_trains = []
 
-  def initialize(number,speed = 0,type)
+  def initialize(number,speed = 0,type = "")
     @number = number
     @speed = speed
     @quantity = []
@@ -74,8 +74,8 @@ class Train
 
 
   def validate!
-    raise puts "\n !!! Номер поезда введен не корректно !!! " if @number !~ VALIDATE[:number_train]
-    true
+    raise puts "\n>>> Номер поезда пуст" if @number.empty?
+    raise puts "\n>>> Номер поезда введен не корректно" if @number !~ VALIDATE[:number_train]
   end
 
   attr_reader :index_station
