@@ -34,5 +34,4 @@ class Route
   def intermediate
     @station_all[1..-2]
   end
-
 end

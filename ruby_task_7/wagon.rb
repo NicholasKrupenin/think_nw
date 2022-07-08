@@ -37,6 +37,7 @@ end
 #Добавить метод, который возвращает занятый объем
 #Добавить метод, который возвращает оставшийся (доступный) объем
 
+
 class WagonCargo
   include Manufacturer
   attr_reader :type, :volume, :wagon, :add_volume

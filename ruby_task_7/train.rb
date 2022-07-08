@@ -81,7 +81,6 @@ class Train
 
   protected # в интерфейсе не задан
 
-
   def validate!
     raise puts "\n>>> Номер поезда пуст" if @number.empty?
     raise puts "\n>>> Номер поезда введен не корректно" if @number !~ VALIDATE[:number_train]

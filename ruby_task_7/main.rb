@@ -9,7 +9,6 @@ require_relative 'menu'
 require_relative 'passenger_cargo_train'
 
 
-
 test = Menu.new
 test.start
 test.choise

@@ -17,7 +17,6 @@ class Station
     @@all
   end
 
-
   def initialize(name)
     @name = name
     @train = []

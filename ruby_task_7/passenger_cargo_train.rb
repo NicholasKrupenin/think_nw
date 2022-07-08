@@ -6,6 +6,7 @@ class PassengerTrain < Train
   end
 end
 
+
 class CargoTrain < Train
   def initialize(number, speed = 0, type = 'cargo')
     super

@@ -176,7 +176,6 @@ class Menu
   # 7
 
   def assign_route
-
     repeat_each_train
     print "\nВыберите поезд для назначения маршрута ~> "
     selection = gets.to_i

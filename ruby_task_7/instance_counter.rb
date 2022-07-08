@@ -15,6 +15,7 @@ module InstanceCounter
 
   end
 
+
   module InstanceMethods
 
     VALIDATE = {name: /^\w{1,8}$/,number_train: /^\w{3}-?\w{2}$/,number: /^\d{1,3}$/,type: /^(cargo)|(passenger)$/}
