@@ -6,6 +6,8 @@ require_relative 'wagon'
 require_relative 'train'
 require_relative 'instance_counter'
 require_relative 'menu'
+require_relative 'wagon_passenger'
+require_relative 'wagon_cargo'
 require_relative 'passenger_cargo_train'
 
 

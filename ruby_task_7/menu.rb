@@ -208,8 +208,8 @@ class Menu
     case selection
     when 1
       print "\n Укажите кол-во мест ~> "
-      seat = gets.to_i
-      @wagon.push(WagonPassenger.new(seat))
+      volume = gets.to_i
+      @wagon.push(WagonPassenger.new(volume))
     when 2
       print "\n Укажите объем ~> "
       volume = gets.to_i
@@ -252,14 +252,10 @@ class Menu
     repeat_each_train
     print "\nВыберите поезд  ~> "
     selection = gets.to_i
-    @train[selection].train_iterator {|x| puts "\n #{m}  --  Вагон #{x.name} -- #{x.wagon}"}
+    @train[selection].train_iterator {|x| puts "\n Вагон #{x.name} -- Кол-во мест #{x.value} -- Кол-во свободных мест #{x.busy_volume} -- Кол-во занятых мест #{x.add_value}"}
     print "\nВыберите вагон  ~> "
     selection2 = gets.to_i
-
-    case @train[selection]
-      when PassengerTrain then @wagon[selection2].seat_busy && @wagon[selection2].free_seat
-      when CargoTrain then @wagon[selection2].volume_busy && @wagon[selection2].free_volume
-    end
+    @wagon[selection2].add_volume
   end
 
   # 12
@@ -268,7 +264,7 @@ class Menu
     repeat_each_train
     print "\nВыберите поезд  ~> "
     selection = gets.to_i
-    @train[selection].train_iterator {|x| puts "\n Вагон #{x.name} -- #{x.wagon}"}
+    @train[selection].train_iterator {|x| puts "\n Вагон #{x.name} -- Кол-во мест #{x.value} -- Кол-во свободных мест #{x.busy_volume} -- Кол-во занятых мест #{x.add_value}"}
   end
 
   # 13
