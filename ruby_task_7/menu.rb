@@ -133,8 +133,6 @@ class Menu
 
       @route = Route.new(@station[first], @station[last])
 
-      p  @route
-
     else
       puts "\nДобавте еще одну станцию !!!"
 
@@ -148,7 +146,7 @@ class Menu
     if @route != 0
       intermediate = @station - @route.station_all
       intermediate.each_index {|x| puts "\n#{x} -- #{@intermediate[x].name}"}
-      print "\nВыберите станцию ~>"
+      print "\nВыберите станцию ~> "
       add = gets.to_i
       @route.add_station(intermediate[add])
 
@@ -205,15 +203,12 @@ class Menu
     print "\nУточните тип вагона (1: Пассажирский 2: Грузовой)  ~> "
     selection = gets.to_i
 
+    print "\n Укажите кол-во мест или объем ~> "
+    volume = gets.to_i
+
     case selection
-    when 1
-      print "\n Укажите кол-во мест ~> "
-      volume = gets.to_i
-      @wagon.push(WagonPassenger.new(volume))
-    when 2
-      print "\n Укажите объем ~> "
-      volume = gets.to_i
-      @wagon.push(WagonCargo.new(volume))
+      when 1 then @wagon.push(WagonPassenger.new(volume))
+      when 2 then @wagon.push(WagonCargo.new(volume))
     end
 
     repeat_each_train
@@ -224,7 +219,7 @@ class Menu
       @train[selection].add_wagon(@wagon[@counter])
       @counter += 1
     else
-      puts 'Вагон/ы и поезд разных типов'
+      puts "\nВагон/ы и поезд разных типов"
     end
   end
 
@@ -236,13 +231,12 @@ class Menu
     selection = gets.to_i
 
     unless @train[selection].quantity.empty?
-    @train[selection].quantity.each_index {|x| puts "\n Вагон #{x} -- #{@train[selection].quantity[x].name} -- #{@train[selection].quantity[x].type}"}
-    print "\nВыберите вагон который нужно отцепить ~> "
-    selection2 = gets.to_i
-    @train[selection].del_wagon(@wagon[selection2])
-
+      @train[selection].quantity.each_index {|x| puts "\n Вагон #{x} -- #{@train[selection].quantity[x].name} -- #{@train[selection].quantity[x].type}"}
+      print "\nВыберите вагон который нужно отцепить ~> "
+      selection2 = gets.to_i
+      @train[selection].del_wagon(@wagon[selection2])
     else
-      print "\nНечего удалять"
+      puts "\nНечего удалять"
     end
   end
 
@@ -252,9 +246,11 @@ class Menu
     repeat_each_train
     print "\nВыберите поезд  ~> "
     selection = gets.to_i
-    @train[selection].train_iterator {|x| puts "\n Вагон #{x.name} -- Кол-во мест #{x.value} -- Кол-во свободных мест #{x.busy_volume} -- Кол-во занятых мест #{x.add_value}"}
+
+    @train[selection].train_iterator {|y, x| puts "\n #{y} -- Вагон #{x.name}"}
     print "\nВыберите вагон  ~> "
     selection2 = gets.to_i
+
     @wagon[selection2].add_volume
   end
 
@@ -264,7 +260,12 @@ class Menu
     repeat_each_train
     print "\nВыберите поезд  ~> "
     selection = gets.to_i
-    @train[selection].train_iterator {|x| puts "\n Вагон #{x.name} -- Кол-во мест #{x.value} -- Кол-во свободных мест #{x.busy_volume} -- Кол-во занятых мест #{x.add_value}"}
+    @train[selection].train_iterator do |y, x|
+      case x.type
+        when "passenger" then  puts "\n Вагон #{x.name} -- Кол-во мест #{x.value} -- Кол-во свободных мест #{x.busy_volume} -- Кол-во занятых мест #{x.add_value}"
+        when "cargo" then  puts "\n Вагон #{x.name} -- Объем #{x.value} -- Свободный объем #{x.busy_volume} -- Занятый объем #{x.add_value}"
+      end
+    end
   end
 
   # 13

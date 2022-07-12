@@ -27,7 +27,10 @@ class Train
   end
 
   def train_iterator
-    self.quantity.each {|x| yield x}
+    self.quantity.reduce(0) do |y, x|
+      yield y, x
+      y += 1
+    end
     #@quantity.each_index {|n| @iterator.call(self,n)}
   end
 
