@@ -49,8 +49,8 @@ class Menu
       selection = gets.to_i
       @attempt = 0
 
-      begin
-        selection
+      #begin
+       # selection
 
           case selection
             when 1 then send(:start)
@@ -72,10 +72,10 @@ class Menu
               state = false
           end
 
-        rescue
-          puts "\n>>> Попробуйте снова"
-          retry if (@attempt += 1) < 2
-      end
+        #rescue
+         # puts "\n>>> Попробуйте снова"
+         #3 retry if (@attempt += 1) < 2
+      #end
     end
   end
 
@@ -243,15 +243,30 @@ class Menu
   # 11
 
   def occupy
-    repeat_each_train
-    print "\nВыберите поезд  ~> "
-    selection = gets.to_i
 
-    @train[selection].train_iterator {|y, x| puts "\n #{y} -- Вагон #{x.name}"}
-    print "\nВыберите вагон  ~> "
-    selection2 = gets.to_i
+    unless @wagon.empty?
+      repeat_each_train
+      print "\nВыберите поезд  ~> "
+      selection = gets.to_i
 
-    @wagon[selection2].add_volume
+      @train[selection].train_iterator {|y, x| puts "\n #{y} -- Вагон #{x.name} -- #{x.type}"}
+      print "\nВыберите вагон  ~> "
+      selection2 = gets.to_i
+
+      case @train[selection].quantity[selection2].type
+        when "passenger" then @train[selection].quantity[selection2].add_volume
+        when "cargo"
+          print "\nУкажите занимаемы объем  ~> "
+          amount = gets.to_i
+          if @train[selection].quantity[selection2].busy_volume >= amount
+            @train[selection].quantity[selection2].add_volume(amount)
+          else
+            puts "\nУказанный объем больше чем имеется в вагоне"
+          end
+      end
+    else
+      puts "\nВагон не создан"
+    end
   end
 
   # 12

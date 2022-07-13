@@ -32,9 +32,3 @@ class Wagon
     raise puts "\n>>> Значение не может быть отрицательным или равным нулю" if @value.zero? || @value.negative?
   end
 end
-
-
-
-
-
-

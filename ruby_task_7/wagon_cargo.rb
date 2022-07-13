@@ -5,4 +5,8 @@ class WagonCargo < Wagon
     @type = "cargo"
     super
   end
+
+  def add_volume(value)
+  @add_value += value
+  end
 end
