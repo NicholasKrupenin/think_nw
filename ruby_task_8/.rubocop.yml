@@ -1,0 +1,32 @@
+AllCops:
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/OptionalArguments:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 320
+
+Metrics/MethodLength:
+  Max: 21
+
+Style/ClassVars:
+  Enabled: false
