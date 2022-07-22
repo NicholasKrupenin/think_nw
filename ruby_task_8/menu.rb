@@ -31,14 +31,11 @@ class Menu
     start
 
     loop do
+      @attempt = 0
       print "\n--------------------------- "
       print "\n\nEnter number: ~> "
       selection = gets.chomp.to_i
-      
-      puts "\n Empty value" if selection
       break if selection == 15
-
-      @attempt = 0
 
       begin
         send(ACTION[selection])
