@@ -1,10 +1,16 @@
 require_relative 'instance_counter'
+require_relative 'acсessors'
+require_relative 'validation'
 
 class Route
 
   include InstanceCounter
+  include Acсessors
+  include Validation
 
   attr_reader :station_all
+
+  validate :primary, :route, :final
 
   def initialize(primary, final)
     @primary = primary
@@ -25,10 +31,6 @@ class Route
   private # interface is not specified
 
   attr_accessor :primary, :final
-
-  def validate!
-    raise puts "\n>>> The start and end stations are the same" if @primary == @final
-  end
 
   def intermediate
     @station_all[1..-2]

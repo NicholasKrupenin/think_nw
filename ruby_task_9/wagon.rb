@@ -6,14 +6,16 @@ require_relative 'validation'
 class Wagon
 
   include Manufacturer
+  include Acсessors
+  include Validation
 
   attr_reader :type, :name, :value, :add_value
 
   validate :value, :wagon
 
-  def initialize(value, rand = ('a'..'z').to_a.sample(5).join)
-    @name = rand
+  def initialize(value, attr_rand = ('a'..'z').to_a.sample(5).join)
     @value = value
+    @name = attr_rand
     @add_value = 0
     validate!
   end
@@ -24,10 +26,5 @@ class Wagon
 
   def busy_volume
     @value - @add_value
-  end
-
-  def validate!
-    raise puts "\n>>> Value must be an integer" unless @value.instance_of?(Integer)
-    raise puts "\n>>> Value cannot be negative or zero" if @value.zero? || @value.negative?
   end
 end

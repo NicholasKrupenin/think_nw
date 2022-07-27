@@ -39,7 +39,8 @@ class Menu
 
       begin
         send(ACTION[selection])
-      rescue StandardError
+      rescue StandardError => e
+        puts "\n>>> #{e}"
         puts "\n>>> Try again"
         retry if (@attempt += 1) < 2
       end

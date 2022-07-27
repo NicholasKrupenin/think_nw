@@ -2,13 +2,18 @@
 
 require_relative 'instance_counter'
 require_relative 'acсessors'
+require_relative 'validation'
 
 class Station
 
   include InstanceCounter
   include Acсessors
+  include Validation
 
   attr_reader :name, :train
+
+  validate :name, :presence
+  validate :name, :format, VALIDATE[:name]
 
   @@all = []
 
@@ -37,11 +42,6 @@ class Station
   end
 
   private # interface is not specified
-
-  def validate!
-    raise puts "\n>>> Name is not correct" if @name !~ VALIDATE[:name]
-    raise puts "\n>>> Station name not specified" if @name.empty?
-  end
 
   def type_train(type)
     @train.select { |train| train.type == type }
