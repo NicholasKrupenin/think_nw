@@ -18,7 +18,7 @@ module Validation
       self.class.instance_variable_get("@validations").each do |value|
         validate_methods = "validate_#{value[:type]}"
         value = instance_variable_get("@#{value[:name]}")
-        param = value[:params][0]
+        param = value[:params].first
         send(validate_methods, value, param)
       end
     end
