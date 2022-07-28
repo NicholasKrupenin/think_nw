@@ -162,7 +162,7 @@ class Menu
     print "\nSelect the train to target the route ~> "
     selection = gets.to_i
 
-    if @train[selection].nil? || @route.zero?
+    if @train[selection].nil? || @route == 0
       puts "\nTrain not created or assigned route"
     else
       @train[selection].assign_a_route(@route)
