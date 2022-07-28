@@ -24,7 +24,14 @@ module Validation
     protected # interface is not specified
 
     def validate!
-      self.class.instance_variable_get("@validations").each do |value|
+
+      if self.class.ancestors.include?(Wagon)  || self.class.ancestors.include?(Train)
+        variable = self.class.superclass
+      else
+        variable = self.class
+      end
+
+      variable.instance_variable_get("@validations").each do |value|
         attr_value = instance_variable_get("@#{value[:name]}")
 
         if self.class.to_s == "Route"
@@ -50,7 +57,7 @@ module Validation
     end
 
     def validate_wagon(value, _)
-      raise StandardError, "Value must be an integer" unless @value.instance_of?(Integer)
+      raise StandardError, "Value must be an integer" unless value.instance_of?(Integer)
       raise StandardError, "Value cannot be negative or zero" if value.zero? || value.negative?
     end
 

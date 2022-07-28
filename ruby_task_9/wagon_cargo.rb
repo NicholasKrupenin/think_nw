@@ -2,6 +2,7 @@ require_relative 'manufacturer_name'
 require_relative 'instance_counter'
 require_relative 'acсessors'
 require_relative 'validation'
+require_relative 'wagon'
 
 class WagonCargo < Wagon
 
